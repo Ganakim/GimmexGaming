@@ -1,0 +1,9 @@
+#chatBox{
+  position: absolute;
+  right: 0;
+  top: 0px;
+  width: 200px;
+}
+#chatBox.hidden{
+  right: -200px;
+}

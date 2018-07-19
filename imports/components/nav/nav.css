@@ -1,0 +1,29 @@
+.navbar{
+  height: 54px;
+}
+.navbar-brand{
+  font-family: Helvetica;
+  font-weight: 800;
+}
+#artistSearchResults{
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 3;
+}
+.dropdown{
+  position: absolute;
+  top: 150%;
+  right: 0;
+}
+.artistSearchResult{
+  background-color: #eeeeee;
+  cursor: pointer;
+}
+.artistSearchResult:hover{
+  background: #bbbbbb;
+}
+.at-form{
+  width: 245px;
+}

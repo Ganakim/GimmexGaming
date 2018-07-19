@@ -1,0 +1,9 @@
+#chatBoxSend>div{
+  outline: none;
+}
+#chatBoxSend>button{
+  outline: none;
+}
+.timestamp{
+  color: grey;
+}

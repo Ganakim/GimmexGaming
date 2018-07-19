@@ -1,0 +1,23 @@
+<template name="chat">
+	<div class="p-2 d-flex flex-column bg-light border-bottom border-left border-top">
+		<div class="bg-white d-flex flex-column">
+			{{#each myChat}}
+				<div class="border-bottom p-1">
+					<b class="{{#if (is sender receiver)}}text-primary{{/if}}">{{search "Users" false sender "username"}}</b>:
+					{{body}}
+					<div class="timestamp">
+						{{timestamp}}
+					</div>
+				</div>
+			{{/each}}
+		</div>
+		{{#if currentUser}}
+			<form id="chatBoxSend" class="mt-2">
+				<div contenteditable="true" class="px-1 border border-dark bg-white"></div>
+				<button type="submit" class="btn btn-sm mt-1 btn-primary">Send</button>
+			</form>
+		{{else}}
+			Please log or sign up to chat!
+		{{/if}}
+	</div>
+</template>

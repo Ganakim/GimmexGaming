@@ -1,0 +1,42 @@
+<template name="nav">
+	<nav class="navbar navbar-dark bg-primary">
+	  <div class="d-flex justify-content-between f-1">
+  	  <a href="/home" class="navbar-brand">
+  	  	Artist's Corner
+  	  </a>
+  	  <div id="artistSearch" class="position-relative mr-3">
+        <form class="form-inline">
+          <input class="form-control" type="search" placeholder="Artist Search">
+        </form>
+        <div id="artistSearchResults" class="d-flex flex-column align-items-center px-2">
+          {{#each artistSearchResults}}
+            <div id="{{_id}}" class="artistSearchResult border-bottom border-dark w-100 p-1">
+              {{username}}
+            </div>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+    <div class="position-relative">
+      <div class="dropdownTrigger text-light d-flex">
+        {{#if currentUser}}
+  				<div>{{currentUser.username}}</div>
+  			{{else}}
+  			  <div>Login/Sign up</div>
+				{{/if}}
+				<div class="ml-1 dropdownIndicator-left flat"></div>
+			</div>
+			<div class="bg-light dropdown flat">
+        {{#if currentUser}}
+          <div class="at-form">
+            <div class="at-pwd-form">
+              <button type="submit" id="logoutBtn" class="at-btn submit btn btn-block btn-default">Logout</button>
+            </div>
+          </div>
+        {{else}}
+          {{>atForm}}
+        {{/if}}
+			</div>
+    </div>
+	</nav>
+</template>
