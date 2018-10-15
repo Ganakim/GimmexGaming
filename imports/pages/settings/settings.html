@@ -1,0 +1,112 @@
+<template name="settings">
+	<div class="d-flex justify-content-center f-1">
+    <div class="card {{targetArtist.theme}}-light w-75 h-75 m-4">
+      <div class="card-body d-flex">
+        <div class="tabs d-flex flex-column border-right pr-3">
+          {{#each tabs}}
+            <div class="{{#if is this.tab 'dma'}}border-top{{/if}} mt-1 pt-1">
+              <div class="btn {{#if is this.tab artistOptionTab}}{{#if is this.tab 'dma'}}btn-warning{{else}}btn-{{targetArtist.theme}}{{/if}}{{else}}btn-{{targetArtist.theme}}-light{{/if}}">
+                {{text}}
+              </div>
+            </div>
+          {{/each}}
+        </div>
+        <div class="f-1 px-3 artistOptionTab">
+          {{>Template.dynamic template=artistOptionTab}}
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="space">
+  <div>
+    Here's where you can edit your desk!
+  </div>
+</template>
+
+<template name="profile">
+  <h4 class="w-100 border-bottom pb-1"><b>Profile:</b></h4>
+  <form id="usernameChange" class="form-group">
+    <label for="username">Username:<div class="ml-2"></div></label>
+    <input type="text" name="username" class="form-control" value="{{currentUser.username}}"/>
+    <button type="submit" class="btn btn-{{targetArtist.theme}} mt-2">Update</button>
+  </form>
+  <form id="passwordChange" class="form-group border-top">
+    <label for="Cpassword">Current Password:<div class="ml-2"></div></label>
+    <input type="password" name="Cpassword" class="form-control"/>
+    <label for="Npassword">New Password:<div class="ml-2"></div></label>
+    <input type="password" name="Npassword" class="form-control"/>
+    <label for="CNpassword">Confirm New Password:</label>
+    <input type="password" name="CNpassword" class="form-control"/>
+    <button type="submit" class="btn btn-{{targetArtist.theme}} mt-2">Change Password</button>
+  </form>
+</template>
+
+<template name="theme">
+  <h4 class="w-100 border-bottom pb-1"><b>Theme:</b></h4>
+  <h5>Colors:</h5>
+  <div class="d-flex flex-wrap rounded bg-white border p-3 justify-content-center">
+    {{#each themes.colors}}
+      <div class="m-1 p-1 pointer themeBtn {{this}}">{{this}}</div>
+    {{/each}}
+  </div>
+  <h5>Sample:</h5>
+  <div class="d-flex flex-column rounded {{tempTheme}}-light border p-3">
+    <div class="d-flex flex-column bg-white swatches border p-1 rounded {{tempTheme}}-border">
+      Swatches:
+      <div class="d-flex h-75">
+        <div class="f-1 h-100 {{tempTheme}}-l5"></div>
+        <div class="f-1 h-100 {{tempTheme}}-l4"></div>
+        <div class="f-1 h-100 {{tempTheme}}-l3"></div>
+        <div class="f-1 h-100 {{tempTheme}}-l2"></div>
+        <div class="f-1 h-100 {{tempTheme}}-l1"></div>
+        <div class="f-1 h-100 {{tempTheme}}-d1"></div>
+        <div class="f-1 h-100 {{tempTheme}}-d2"></div>
+        <div class="f-1 h-100 {{tempTheme}}-d3"></div>
+        <div class="f-1 h-100 {{tempTheme}}-d4"></div>
+        <div class="f-1 h-100 {{tempTheme}}-d5"></div>
+      </div>
+      Backgrounds:
+      <div class="d-flex h-25">
+        <div class="f-1 h-100 {{tempTheme}}-light border"></div>
+        <div class="f-1 h-100 {{tempTheme}}-dark"></div>
+      </div>
+    </div>
+    <div class="{{tempTheme}}-text">Sample text</div>
+    <div class="top sampleBtn btn {{#if is sampleBtn 'top'}}btn-{{tempTheme}}{{else}}btn-{{tempTheme}}-light{{/if}}">Sample</div>
+    <div class="bottom sampleBtn btn mt-2 {{#if is sampleBtn 'bottom'}}btn-{{tempTheme}}{{else}}btn-{{tempTheme}}-light{{/if}}">Sample</div>
+  </div>
+  
+  <div class="themeSuccessMsg d-flex"></div>
+  <div class="btn btn-primary applyTheme mt-2">Apply</div>
+</template>
+
+<template name="chatMod">
+  <div>
+    Here's where you can Moderate your chat!
+  </div>
+</template>
+
+<template name="connections">
+  <h4 class="w-100 border-bottom pb-1"><b>Connections:</b></h4>
+  <div id="deviantArtBtn" class="btn btn-success">DeviantArt</div>
+</template>
+
+<template name="feedback">
+  <div>
+    Here's where you can provide feedback!
+  </div>
+</template>
+
+<template name="donate">
+  <div>
+    Here's where you can give me monies that I need for food!
+  </div>
+</template>
+
+<template name="dma">
+  <div>
+    Here's where you can destroy everything I know about you for all eternity!
+  </div>
+</template>

@@ -1,4 +1,7 @@
 Tools = {
+  increment(a,b){
+    return a + b
+  },
   capitalize(s){
     return s.replace(/^\w/, function (chr) {
       return chr.toUpperCase()
@@ -14,7 +17,10 @@ Tools = {
     return Meteor.userId() === id
   },
   is(a, b){
-    return a == b
+    return a === b
+  },
+  not(a){
+    return !a
   },
   search(collection, where, id, part){
     var result
@@ -29,6 +35,51 @@ Tools = {
       }else{
         return result
       }
+    }
+  },
+  genTimestamp(){
+    var parts = ['date','h','mm','a']
+    var time = {}
+    for(var part of parts){
+      if(part === 'date'){
+        time.date = {MMM:moment().format('MMM'), D:moment().format('D'), YYYY:moment().format('YYYY')}
+      }else{
+        time[part] = moment().format(part);
+      }
+    }
+    return time
+  },
+  targetArtist(){
+    return Tools.search('Users', false, Session.get('targetArtist'))
+  },
+  themes(){
+    return {
+      colors:[
+        'red',
+        'pink',
+        'purple',
+        'deep-purple',
+        'indigo',
+        'blue',
+        'light-blue',
+        'cyan',
+        'teal',
+        'green',
+        'lime',
+        'khaki',
+        'yellow',
+        'amber',
+        'orange',
+        'deep-orange',
+        'blue-grey',
+        'brown',
+        'grey',
+        'dark-grey',
+        'black'
+      ],
+      themes:[
+      
+      ]
     }
   },
 }

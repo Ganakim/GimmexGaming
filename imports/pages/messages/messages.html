@@ -1,0 +1,26 @@
+<template name="messages">
+	<div class="d-flex justify-content-center f-1">
+		<div class="card {{targetArtist.theme}}-light w-75 h-75 m-4">
+	    <div class="card-body d-flex">
+	      <div class="tabs d-flex flex-column border-right pr-3">
+	        {{#each pmSenders}}
+	          <div class="mt-1 pt-1">
+	            <div class="btn {{#if (is this currentArtistContact)}}btn-{{targetArtist.theme}}{{else}}btn-{{targetArtist.theme}}-light{{/if}}">
+	              {{search "Users" false this "username"}}
+	            </div>
+	          </div>
+	        {{/each}}
+	      </div>
+	      <div class="f-1 px-3">
+	        {{#if currentArtistContact}}
+	          {{>chat receiver=currentUser._id sender=currentArtistContact}}
+	        {{else}}
+	        <div class="d-flex align-items-center mt-3">
+	          <i class="fas fa-angle-left mr-1"></i>Select a conversation to view it.
+	        </div>
+	        {{/if}}
+	      </div>
+	    </div>
+	  </div>
+  </div>
+</template>

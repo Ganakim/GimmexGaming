@@ -1,20 +1,29 @@
 <template name="chat">
-	<div class="p-2 d-flex flex-column bg-light border-bottom border-left border-top">
-		<div class="bg-white d-flex flex-column">
-			{{#each myChat}}
-				<div class="border-bottom p-1">
-					<b class="{{#if (is sender receiver)}}text-primary{{/if}}">{{search "Users" false sender "username"}}</b>:
+	<div class="chat p-2 d-flex flex-column {{targetArtist.theme}}-light {{#if (not receiver)}}border-bottom border-left border-top{{/if}}">
+		<div class="d-flex flex-column scroll-y">
+			{{#each (myChat receiver sender)}}
+				{{#if newTimestamp @index}}
+					<div class="px-2">
+						<div class="d-flex align-items-center">
+							<div class="f-a border-top"></div>
+								<div class="mx-1 timestamp">{{timestamp.date.MMM}} {{timestamp.date.D}}</div>
+							<div class="f-a border-top"></div>
+						</div>
+					</div>
+				{{/if}}
+				<div class="bg-white position-relative p-1">
+					<b class="{{#if (is sender receiver)}}{{targetArtist.theme}}-text{{/if}}">{{search "Users" false sender "username"}}</b>:
 					{{body}}
 					<div class="timestamp">
-						{{timestamp}}
+						{{timestamp.h}}:{{timestamp.mm}} {{timestamp.a}}
 					</div>
 				</div>
 			{{/each}}
 		</div>
 		{{#if currentUser}}
 			<form id="chatBoxSend" class="mt-2">
-				<div contenteditable="true" class="px-1 border border-dark bg-white"></div>
-				<button type="submit" class="btn btn-sm mt-1 btn-primary">Send</button>
+				<div contenteditable="true" class="px-1 border border-dark bg-white rounded"></div>
+				<button type="submit" class="btn btn-sm mt-1 btn-{{targetArtist.theme}}">Send</button>
 			</form>
 		{{else}}
 			Please log or sign up to chat!

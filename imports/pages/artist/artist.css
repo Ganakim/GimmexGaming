@@ -1,9 +1,13 @@
 #chatBox{
   position: absolute;
   right: 0;
-  top: 0px;
+  top: 0;
+  bottom: 0;
   width: 200px;
 }
 #chatBox.hidden{
   right: -200px;
+}
+.artistNav{
+  flex-shrink: 0;
 }

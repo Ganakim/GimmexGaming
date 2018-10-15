@@ -1,0 +1,9 @@
+.artistOptionTab{
+  overflow-y: auto;
+}
+#usernameChange label, #passwordChange label{
+  display: flex;
+}
+.swatches{
+  height: 100px;
+}

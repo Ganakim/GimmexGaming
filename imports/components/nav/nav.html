@@ -4,21 +4,24 @@
   	  <a href="/home" class="navbar-brand">
   	  	Artist's Corner
   	  </a>
-  	  <div id="artistSearch" class="position-relative mr-3">
-        <form class="form-inline">
-          <input class="form-control" type="search" placeholder="Artist Search">
-        </form>
-        <div id="artistSearchResults" class="d-flex flex-column align-items-center px-2">
-          {{#each artistSearchResults}}
-            <div id="{{_id}}" class="artistSearchResult border-bottom border-dark w-100 p-1">
-              {{username}}
-            </div>
-          {{/each}}
+  	  <div class="d-flex">
+  	    <div id="artistBrowse" class="btn btn-primary border mr-2">Browse</div>
+    	  <div id="artistSearch" class="position-relative mr-3">
+          <form class="form-inline">
+            <input class="form-control" type="search" placeholder="Artist Search">
+          </form>
+          <div id="artistSearchResults" class="d-flex flex-column align-items-center px-2 pointer bg-light {{#if artistSearchResults}}pb-2 border{{/if}}">
+            {{#each artistSearchResults}}
+              <div id="{{_id}}" class="artistSearchResult border-bottom {{theme}}-border w-100 p-1">
+                {{username}}
+              </div>
+            {{/each}}
+          </div>
         </div>
       </div>
     </div>
-    <div class="position-relative">
-      <div class="dropdownTrigger text-light d-flex">
+    <div class="position-relative logins">
+      <div class="dropdownTrigger navDrop text-light d-flex">
         {{#if currentUser}}
   				<div>{{currentUser.username}}</div>
   			{{else}}
@@ -30,6 +33,8 @@
         {{#if currentUser}}
           <div class="at-form">
             <div class="at-pwd-form">
+              <button type="submit" id="msgsBtn" class="at-btn submit btn btn-block btn-default">Messages</button>
+              <button type="submit" id="settingsBtn" class="at-btn submit btn btn-block btn-default">Settings</button>
               <button type="submit" id="logoutBtn" class="at-btn submit btn btn-block btn-default">Logout</button>
             </div>
           </div>
