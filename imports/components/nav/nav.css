@@ -13,11 +13,21 @@
   right: 0;
   z-index: 3;
 }
-.dropdown{
-  position: absolute;
-  top: 150%;
+#logoutDropdown{
+  right: 0;
+}
+#gamesListDropdown{
+  left: 0;
+  right: 0;
+}
+#devsListDropdown{
+  left: 0;
   right: 0;
 }
 .at-form{
   width: 245px;
+}
+.gameCard{
+  height: 100px;
+  width: 200px;
 }

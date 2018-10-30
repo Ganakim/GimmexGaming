@@ -22,11 +22,29 @@ Tools = {
   not(a){
     return !a
   },
+  join(...args){
+    args.pop()
+    var tmp = {}
+    var isKey = true
+    var key
+    for(var arg of args){
+      if(isKey){
+        key = arg
+      }else{
+        tmp[key] = arg
+      }
+      isKey = !isKey
+    }
+    return tmp
+  },
   search(collection, where, id, part){
     var result
     if(id){
       result = Collections[collection].findOne(id)
     }else{
+      if(where){
+        console.log('Where: ',where)
+      }
       result = Collections[collection].find(where ? where : {}, {many:true}).fetch()
     }
     if(result){

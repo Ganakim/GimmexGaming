@@ -1,40 +1,43 @@
 <template name="nav">
-	<nav class="navbar navbar-dark bg-primary">
-	  <div class="d-flex justify-content-between f-1">
-  	  <a href="/home" class="navbar-brand">
-  	  	Artist's Corner
-  	  </a>
-  	  <div class="d-flex">
-  	    <div id="artistBrowse" class="btn btn-primary border mr-2">Browse</div>
-    	  <div id="artistSearch" class="position-relative mr-3">
-          <form class="form-inline">
-            <input class="form-control" type="search" placeholder="Artist Search">
-          </form>
-          <div id="artistSearchResults" class="d-flex flex-column align-items-center px-2 pointer bg-light {{#if artistSearchResults}}pb-2 border{{/if}}">
-            {{#each artistSearchResults}}
-              <div id="{{_id}}" class="artistSearchResult border-bottom {{theme}}-border w-100 p-1">
-                {{username}}
-              </div>
+  <nav class="navbar dark-grey">
+    <div class="d-flex justify-content-between f-1">
+      <a href="/home" class="navbar-brand dark-grey">
+        Gimmex Gaming
+      </a>
+      <div class="d-flex f-1">
+        <div class="d-flex dropdownTrigger btn btn-dark-grey black-hover mr-3">
+            Games
+          <div id="gamesListDropdownInd" class="ml-1 dropdownIndicator-left flat"></div>
+        </div>
+        <div id="gamesListDropdown" class="dark-grey d-flex pb-3 px-5 dropdown flat scroll-x">
+          {{#if search "Games" false false false}}
+            {{#each search "Games" false false false}}
+              {{>gameCard this}}
             {{/each}}
-          </div>
+          {{/if}}
+        </div>
+        <div class="d-flex dropdownTrigger btn btn-dark-grey black-hover">
+            Developers
+          <div id="devsListDropdownInd" class="ml-1 dropdownIndicator-left flat"></div>
+        </div>
+        <div id="devsListDropdown" class="dark-grey d-flex pb-3 px-5 dropdown flat scroll-x">
+          {{#each search "Users" (join "dev" true) false false}}
+            {{>devCard this}}
+          {{/each}}
         </div>
       </div>
-    </div>
-    <div class="position-relative logins">
       <div class="dropdownTrigger navDrop text-light d-flex">
         {{#if currentUser}}
-  				<div>{{currentUser.username}}</div>
-  			{{else}}
-  			  <div>Login/Sign up</div>
+          <div>{{currentUser.username}}</div>
+        {{else}}
+          <div>Login/Sign up</div>
 				{{/if}}
 				<div class="ml-1 dropdownIndicator-left flat"></div>
 			</div>
-			<div class="bg-light dropdown flat">
+			<div id="logoutDropdown" class="grey dropdown flat">
         {{#if currentUser}}
           <div class="at-form">
             <div class="at-pwd-form">
-              <button type="submit" id="msgsBtn" class="at-btn submit btn btn-block btn-default">Messages</button>
-              <button type="submit" id="settingsBtn" class="at-btn submit btn btn-block btn-default">Settings</button>
               <button type="submit" id="logoutBtn" class="at-btn submit btn btn-block btn-default">Logout</button>
             </div>
           </div>
@@ -44,4 +47,17 @@
 			</div>
     </div>
 	</nav>
+</template>
+
+<template name="gameCard">
+  <div class="card pointer grey dark-grey-hover mr-3 border gameCard">
+    {{name}}
+  </div>
+</template>
+
+<template name="devCard">
+  <div class="card pointer grey dark-grey-hover mr-3 border gameCard">
+    {{log this}}
+    {{username}}
+  </div>
 </template>

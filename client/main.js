@@ -22,24 +22,16 @@ Template.main.events({
       }
       target.children('.dropdownIndicator-left, .dropdownIndicator-right').toggleClass('flat')
     })
-    $('.chatBoxToggle').addClass('far').removeClass('fas')
-    $('#chatBox').addClass('hidden', 100)
   },
-  'click *':function(e){
-    if(!$.contains($('.logins')[0], e.target)){
-      if(!$('.dropdown').hasClass('flat')){
-        $('.dropdown').addClass('flat')
-        $('.dropdown.flat').closest('.dropdownIndicator-left, .dropdownIndicator-right').addClass('flat')
-      }
-    }
-  }
 })
 
 Tracker.autorun(()=>{
-  if(Meteor.subscribe('Chats').ready()){
-    Meteor.subscribe('Chats', ()=>{
-      console.log(Tools.search('Chats'))
-    })
+  for(var collection in Collections){
+    if(Meteor.subscribe(collection).ready()){
+      Meteor.subscribe(collection, ()=>{
+        console.log(collection, Tools.search(collection))
+      })
+    }
   }
   if(Meteor.subscribe('Users').ready()){
     Meteor.subscribe('Users', ()=>{
